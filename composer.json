@@ -8,7 +8,7 @@
     }],
     "autoload": {
         "psr-4": {
-            "RMT\\AuthorizationBundle\\": "src/"
+            "RMT\\AuthorizationBundle\\": ""
         }
     },
     "require": {

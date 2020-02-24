@@ -32,6 +32,7 @@ class ExportSecuredEntitiesCommand extends Command
     protected function configure()
     {
         $this
+            ->setName(static::$defaultName)
             ->setDescription('Parse all entities, generates json payload, and send to authorization service if there is a change')
         ;
     }
