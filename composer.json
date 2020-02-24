@@ -1,0 +1,25 @@
+{
+    "name": "russmedia-romania/authorization",
+    "description": "Bundle used for exporting access controls for entities and a custom voter to use with redis for accessing entities",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "authors" : [{
+        "name" : "Russmedia Romania"
+    }],
+    "autoload": {
+        "psr-4": {
+            "RMT\\AuthorizationBundle\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^7.1.3",
+        "predis/predis": "^1.0",
+        "symfony/framework-bundle": "^4.2",
+        "symfony/console": "*",
+        "doctrine/doctrine-bundle": "^2.0"
+    },
+    "config": {
+        "bin-dir": "bin/",
+        "sort-packages": true
+    }
+}
