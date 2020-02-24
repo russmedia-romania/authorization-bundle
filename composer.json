@@ -1,5 +1,5 @@
 {
-    "name": "russmedia-romania/authorization",
+    "name": "rmt/authorization-bundle",
     "description": "Bundle used for exporting access controls for entities and a custom voter to use with redis for accessing entities",
     "license": "MIT",
     "type": "symfony-bundle",
