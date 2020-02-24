@@ -5,7 +5,7 @@ namespace RMT\AuthorizationBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="RussmediaRomania\AuthorizationBundle\Repository\AuthorizationSecuredEntitiesCacheRepository")
+ * @ORM\Entity(repositoryClass="RMT\AuthorizationBundle\Repository\AuthorizationSecuredEntitiesCacheRepository")
  */
 class AuthorizationSecuredEntitiesCache
 {

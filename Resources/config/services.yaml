@@ -1,0 +1,17 @@
+services:
+    rmt.security_key_extractor:
+        class: RMT\AuthorizationBundle\Services\SecurityKeyExtractor
+        public: true
+
+    rmt.export_secured_entities_command:
+        class: RMT\AuthorizationBundle\Command\ExportSecuredEntitiesCommand
+        public: true
+        arguments:
+            - '@rmt.security_key_extractor'
+            - '@service_container'
+        tags:
+            - { name: 'console.command', command: 'rmt:export-secured-entities'}
+
+    RMT\AuthorizationBundle\Repository\AuthorizationSecuredEntitiesCacheRepository:
+        tags: ['doctrine.repository_service']
+        arguments: ['@Doctrine\Common\Persistence\ManagerRegistry']

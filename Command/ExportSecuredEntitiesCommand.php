@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class ExportSecuredEntitiesCommand extends Command
 {
 
-    protected static $defaultName = 'authorization:export-secured-entities';
+    protected static $defaultName = 'rmt:export-secured-entities';
 
     private $keyExtractor;
     private $container;
