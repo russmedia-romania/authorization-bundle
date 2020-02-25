@@ -2,7 +2,7 @@
 
 ## Installation
 ```
-composer require rmc/authorization-bundle
+composer require rmt/authorization-bundle
 ```
 ## Requirements
  - php ^7.1.3
@@ -11,10 +11,9 @@ composer require rmc/authorization-bundle
  - Symfony Finder
  - Symfony Console
  - Api Platform
- - Doctrine Bundle
  - Predis
 
- ## Usage
+## Usage
 To implement authorization for entities it is required to implement the `SecuredInterface` for the Entities that need Authorization.
 
 ![Image description](https://i.imgur.com/WPlRoCo.png)
