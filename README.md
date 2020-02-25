@@ -5,14 +5,15 @@
 composer require rmc/authorization-bundle
 ```
 ## Requirements
- - php
- - Symfony bundle
+ - php ^7.1.3
+ - Symfony Framework
+ - Symfony Bundle
  - Symfony Finder
  - Symfony Console
  - Api Platform
  - Doctrine Bundle
- - Phpredis
- 
+ - Predis
+
  ## Usage
 To implement authorization for entities it is required to implement the `SecuredInterface` for the Entities that need Authorization.
 
@@ -26,7 +27,7 @@ As you can see from the previous screenshot the collection operation `POST` inst
 That is a very important thing to keep in mind, if that operation will use just `security` no one will be able to `POST` any resources.
 
 ## Accepted Attributes
-The only accepted attributes are `READ` , `WRITE`, `DELETE` , any other attribute used will trigger an `AccessDeniedException`!
+The only accepted attributes are `READ` , `WRITE`, `DELETE` , any other attribute used will trigger an `AccessDeniedException!`
 
 ## Things to keep in mind
 - The script will be set to only run when a deployment will run
