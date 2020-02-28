@@ -53,6 +53,8 @@ class AccessVoter extends Voter
                 }
 
                 $subject = $iterator[0];
+            } elseif ($iterator) {
+                return self::ACCESS_GRANTED;
             }
         }
 
@@ -85,17 +87,14 @@ class AccessVoter extends Voter
     protected function voteOnAttribute($attribute, $subject, $roles)
     {
         if (isset($this->authParameters['redis_url']) && isset($this->authParameters['service_name']) && $subject::getSecurityKey()) {
-            try {
-                $redisClient = new Client($this->container->getParameter('authorization')['redis_url']);
-                $redisClient->ping();
-            } catch (\Exception $e) {
-                throw new ServerException('Redis instance is not responding! Check if the server is running.');
-            }
+            $redisClient = new Client($this->container->getParameter('authorization')['redis_url']);
 
             foreach ($roles as $role) {
-                // todo remove the set method for redis ( only used for testing purposes )
-                $redisClient->set('media' . '-' . $subject::getSecurityKey() . '-' . $role, serialize(['DELETE' , 'WRITE']));
-                $roleAccess = unserialize($redisClient->get($this->authParameters['service_name'] . '-' . $subject::getSecurityKey() . '-' . $role));
+                try {
+                    $roleAccess = unserialize($redisClient->get($this->authParameters['service_name'] . '-' . $subject::getSecurityKey() . '-' . $role));
+                } catch (\Exception $e) {
+                    throw new ServerException('Redis instance is not responding! Check if the server is running.');
+                }
 
                 if ($roleAccess && in_array($attribute, $roleAccess)) {
                     return true;
@@ -107,5 +106,4 @@ class AccessVoter extends Voter
 
         throw new ParameterNotFoundException('The authorization configuration parameters are missing!');
     }
-
 }
