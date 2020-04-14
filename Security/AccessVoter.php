@@ -3,7 +3,6 @@
 namespace RMT\AuthorizationBundle\Security;
 
 use ApiPlatform\Core\Bridge\Doctrine\MongoDbOdm\Paginator as MongoDbPaginator;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Paginator as OrmPaginator;
@@ -19,13 +18,11 @@ class AccessVoter extends Voter
     const ROLE_SUPER_ADMIN      = 'ROLE_SUPER_ADMIN';
     const ROLE_SERVICE_ACCOUNT  = 'ROLE_SERVICE_ACCOUNT';
 
-    private $container;
-    protected $authParameters;
+    protected $authParameters = array();
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(array $authParameters)
     {
-        $this->container = $container;
-        $this->authParameters = $this->container->hasParameter('authorization') ? $this->container->getParameter('authorization') : null;
+        $this->authParameters = $authParameters;
     }
 
     public function vote(TokenInterface $token, $subject, array $attributes)
