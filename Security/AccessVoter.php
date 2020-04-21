@@ -74,7 +74,7 @@ class AccessVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        if (!isset(self::SUPPORTED_ATTRIBUTES[$attribute]) && is_object($subject) && !method_exists($subject, self::SECURITY_KEY_METHOD)) {
+        if (!isset(self::SUPPORTED_ATTRIBUTES[$attribute]) && !method_exists($subject, self::SECURITY_KEY_METHOD)) {
             return false;
         }
 
