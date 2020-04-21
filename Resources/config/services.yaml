@@ -8,7 +8,11 @@ services:
         public: true
         arguments:
             - '@rmt.security_key_extractor'
-            - '@service_container'
+            - '@doctrine.orm.entity_manager'
+            - '%authorization%'
+            - '%service_account_email%'
+            - '%service_account_password%'
+            - '%flavour%'
         tags:
             - { name: 'console.command', command: 'rmt:export-secured-entities'}
 
@@ -16,7 +20,7 @@ services:
         class: RMT\AuthorizationBundle\Security\AccessVoter
         public: true
         arguments:
-            - '@service_container'
+            - '%authorization%'
         tags: ['security.voter']
 
     RMT\AuthorizationBundle\Repository\AuthorizationSecuredEntitiesCacheRepository:
