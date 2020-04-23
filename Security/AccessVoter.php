@@ -84,7 +84,7 @@ class AccessVoter extends Voter
     protected function voteOnAttribute($attribute, $subject, $roles)
     {
         if (isset($this->authParameters['redis_url']) && isset($this->authParameters['service_name']) && $subject::getSecurityKey()) {
-            $redisClient = new Client($this->container->getParameter('authorization')['redis_url']);
+            $redisClient = new Client($this->authParameters['redis_url']);
 
             foreach ($roles as $role) {
                 try {
