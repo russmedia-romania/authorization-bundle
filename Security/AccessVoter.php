@@ -88,7 +88,14 @@ class AccessVoter extends Voter
 
             foreach ($roles as $role) {
                 try {
-                    $roleAccess = unserialize($redisClient->get($this->authParameters['service_name'] . '-' . $subject::getSecurityKey() . '-' . $role));
+                    $roleAccess = unserialize($redisClient->get(
+                      isset($this->authParameters['client_name']) 
+                        ? ($this->authParameters['client_name'] . '-')
+                        : '' .
+                      $this->authParameters['service_name'] . '-' .
+                      $subject::getSecurityKey() . '-' . 
+                      $role
+                    ));
                 } catch (\Exception $e) {
                     throw new ServerException('Redis instance is not responding! Check if the server is running.');
                 }
